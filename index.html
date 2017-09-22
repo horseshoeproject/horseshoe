@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Horseshoe - Job Search</title>
+	<!-- External Resources -->
+		<!-- Bootstrap CSS Library -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- External CSS -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<!-- Firebase Library -->
+		<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+		<!-- jQuery Library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+	<div class="container">
+
+
+<!-- Navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <img class="navbar-brand" src="assets/css/images/logo.png">
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="navMenu">
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a id="dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Menu<span class="caret"></span></a>
+	          <ul id="dropdown-menu" class="dropdown-menu">
+	          	<li><a href="index.html">Home</a></li>
+	            <li><a href="search.html">Search</a></li>
+	            <li><a href="activity.html">Activity</a></li>
+	            <li><a href="tasks.html">Add Job</a></li>
+	            <li><a href="about.html">About</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
+<!-- href="login.html -->
+
+
+<!-- Sign/Log in -->
+	<div class="container">
+
+		<div class="row">
+		    <div class="col-sm-3 col-md-6 col-lg-4">
+		    	<h2 id="pagelogin">Login: </h2>
+				<div class="input-group" id="signIn">
+			  		<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Account ID:</span>
+			  		<input type="text" id="acctID" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+				</div>
+
+<!-- Submit Button -->
+
+				<div id="submitbttn">
+
+					<button class="btn btn-default btn-block" type="submit" id="submit">Submit</button>
+					<a class="btn btn-default btn-block" href="create.html" role="button">Create Account</a>
+
+				</div>
+
+			</div>
+<!-- Login Infomation/Graphics -->
+			<div id="loginInfo">
+				<div class="col-sm-offset-3 col-md-offset-6 col-lg-offset-4">
+					<h2><img class="icons" src="assets/css/images/icons1.png"><span></span> Search for Jobs</h2>
+						<p class="indexinfo">Easily browse for your dream jobs from anywhere</p>
+				</div>
+
+				<div class="col-sm-offset-3 col-md-offset-6 col-lg-offset-4">
+					<h2><span><img class="icons" src="assets/css/images/icons2.png"></span> Track your Progress</h2>
+						<p class="indexinfo">Use our tools to plan your next step</p>
+				</div>
+
+				<div class="col-sm-offset-3 col-md-offset-6 col-lg-offset-4">
+					<h2><span><img class="icons" src="assets/css/images/icons3.png"></span> Find a Job</h2>
+						<p class="indexinfo">Land the career you have always wanted</p>
+				</div>
+			</div>
+		
+		</div>
+	<br>
+
+
+	</div>
+
+	<br>
+
+<!-- Footer -->
+	<div class="footer navbar-fixed-bottom" id="footer">
+  		<div class="panel-footer" style="text-align: center">
+  			<h1 class="footer">2017 Horseshoe Job Search ©</h1>
+			<!-- Insert links to API (Linkedin & Glass Door) -->
+
+  		</div>
+	</div>
+
+	</div>
+
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB9qMxcsDgjD4qmDW5aAJHRkPwDD9qAWbc",
+    authDomain: "cbc-proj1.firebaseapp.com",
+    databaseURL: "https://cbc-proj1.firebaseio.com",
+    projectId: "cbc-proj1",
+    storageBucket: "cbc-proj1.appspot.com",
+    messagingSenderId: "1090425604237"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript">
+
+$("#login").on("click", function() {
+        // Sign in with username.
+        firebase.auth().signInWithUsername(username).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode === 'auth/wrong-usernames') {
+            alert('User does not exist.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          document.getElementById('quickstart-sign-in').disabled = false;
+          // [END_EXCLUDE]
+        });	
+    });
+	
+
+</script>
+
+<script src="assets/javascript/nav.js"></script>
+</body>
+</html>

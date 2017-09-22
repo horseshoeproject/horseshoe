@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Horseshoe - Job Search</title>
+	<!-- Bootstrap and JQuery Script -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- External CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+
+	<div class="container">
+
+<!-- Navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <img class="navbar-brand" src="assets/css/images/logo.png">
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="navMenu">
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a id="dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Menu<span class="caret"></span></a>
+	          <ul id="dropdown-menu" class="dropdown-menu">
+	          	<li><a href="index.html">Home</a></li>
+	            <li><a href="search.html">Search</a></li>
+	            <li><a href="activity.html">Activity</a></li>
+	            <li><a href="tasks.html">Add Job</a></li>
+	            <li><a href="about.html">About</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+<!-- Create Account -->
+<div id="createpage">
+	<h2 id="createtitle">Create Account</h2>
+	<div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+		<div class="input-group">
+	  		<span class="input-group-addon" id="sizing-addon2">First Name: </span>
+	  		<input type="text" id="firstname" class="form-control" placeholder="First Name" aria-describedby="sizing-addon2">
+		</div>
+	</div>
+	</div>
+
+	<br>
+
+	<div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+		<div class="input-group">
+	  		<span class="input-group-addon" id="sizing-addon2">Last Name: </span>
+	  		<input type="text" id="lastname" class="form-control" placeholder="Last Name" aria-describedby="sizing-addon2">
+		</div>
+	</div>
+	</div>
+
+	<br>
+
+	<div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+		<div class="input-group">
+	  		<span class="input-group-addon" id="sizing-addon2">Pin #: </span>
+	  		<input type="text" id="fourdigitpin" class="form-control" placeholder="Four Digits" aria-describedby="sizing-addon2">
+		</div>
+	</div>
+	</div>
+
+	<br>
+<!-- Submit Button -->
+	<div class="row">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+		<div id="submitbttn">
+			<button class="btn btn-default btn-block" href="index.html" id="adduser" type="submit">Submit</button>
+		</div>
+	</div>
+	</div>
+</div>
+
+	<br><br>
+
+<!-- Footer -->
+	<div class="footer navbar-fixed-bottom" id="footer">
+  		<div class="panel-footer" style="text-align: center">
+  			<h1 class="footer">2017 Horseshoe Job Search ©</h1>
+			<!-- Insert links to API (Linkedin & Glass Door) -->
+
+  		</div>
+	</div>
+
+	</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script type="text/javascript">
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAaYng0z0kyak1SG-CLYeR6uWFswrnEExg",
+    authDomain: "project-1-horseshoe.firebaseapp.com",
+    databaseURL: "https://project-1-horseshoe.firebaseio.com",
+    projectId: "project-1-horseshoe",
+    storageBucket: "project-1-horseshoe.appspot.com",
+    messagingSenderId: "357220637420"
+  };
+  firebase.initializeApp(config);
+
+var database= firebase.database();
+
+var firstName= "";
+
+var lastName= "";
+
+var fourDigitPin= 0;
+
+var newUser= ""
+
+// when a user is types there information and hit submits
+
+$("#adduser").on("click", function(event) {
+      event.preventDefault();
+
+//Grab ser input
+//store first name in variable
+firstName= $("#firstname").val().trim();
+
+//store last name in variable
+lastName= $("#lastname").val().trim();
+
+//store pin in variable
+fourDigitPin= $("#fourdigitpin").val().trim();
+
+newUser= (lastName.substr(0,2) + fourDigitPin);
+
+console.log(newUser);
+
+
+//var UserId
+
+//Creates local "temporary" object for holding user's data
+firebase.database().ref('usernames/' + newUser).set ({
+
+	firstname: firstName,
+	lastname: lastName,
+	fourdigitpin: fourDigitPin
+
+});
+
+//Uploads user data to the database
+
+//database.ref().push(newUser);
+
+//Logs everything to console
+ //console.log(newUser.firstname);
+ //console.log(newUser.lastname);
+ //console.log(newUser.fourdigitpin);
+
+});
+ 
+
+
+
+
+//submit event 
+	
+
+
+
+
+
+
+
+
+</script>
+
+<script src="assets/javascript/nav.js"></script>
+</body>
+</html>

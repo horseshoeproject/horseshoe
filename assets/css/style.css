@@ -1,0 +1,153 @@
+body {
+	background-image: url('images/background.png');
+	padding-top: 70px;
+
+}
+
+nav {
+	background-color: white;
+}
+
+.Dropdown--Active {
+	display: block;
+}
+
+.navbar-brand {
+	height: 150px;
+}
+
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.footer {
+	text-align: center;
+	font-size: 12px;
+}
+
+.panel-footer {
+	background-color: white;
+}
+
+#actnotes {
+	clear: both;
+}
+
+#actfooter {
+	margin-bottom: 0px;
+}
+
+#actprogress {
+	padding-top: 15px;
+}
+
+#pagelogin {
+	padding-top: 100px;
+	padding-bottom: 10px;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+#loginInfo {
+	padding-top: 80px;
+	padding-left: 55px;
+}
+
+#submitbttn {
+	padding-top: 10px;
+}
+
+#navMenu {
+	padding-top: 50px;
+	padding-right: 20px;
+	font-size: 20px;
+}
+
+.dropdown-menu {
+	font-size: 15px;
+	text-align: right;
+}
+
+.icons {
+	height: 75px;
+}
+
+.indexinfo {
+	padding-left: 15px;
+	font-size: 18px;
+	font-family: Georgia, serif;
+}
+
+#searchpage {
+	padding-top: 100px;
+}
+
+#aboutpage {
+	padding-top: 100px;
+	}
+
+#taskspage {
+	padding-top: 100px;
+}
+
+#jobs-table {
+	clear: both;
+    padding: 10px;
+}
+
+.searchtable {
+    padding: 20px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.searchpage {
+	padding-top: 100px;
+}
+
+#searchtitle {
+	font-size: 65px;
+	padding-top: 15px;
+	padding-left: 10px;
+	clear: both;
+}
+
+#searchbar {
+	padding-top: 25px;
+	padding-bottom: 15px;
+}
+
+#taskstodo {
+	clear: both;
+}
+
+.tasks {
+	overflow: scroll;
+}
+
+#createpage {
+	padding-top: 120px;
+}
+
+#createtitle {
+	font-size: 40px;
+	padding-bottom: 15px;
+	clear: both;
+}
+
+#main-body {
+	padding-top: 80px;
+}
+
+#abouttitle {
+	font-size: 50px;
+	padding-left: 15px;
+}
+
+#aboutp {
+	font-size: 20px;
+	font-family: Georgia, serif;
+	padding-top: 15px;
+}

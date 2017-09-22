@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project 1</title>
+	<!-- External Resources -->
+		<!-- Bootstrap CSS Library -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!-- Firebase Library -->
+		<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+		<!-- jQuery Library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- External CSS -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+<body>
+
+	<div class="container">
+
+
+
+<!-- Navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <img class="navbar-brand" src="assets/css/images/logo.png">
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="navMenu">
+	      
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a id="dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Menu<span class="caret"></span></a>
+	          <ul id="dropdown-menu" class="dropdown-menu">
+	          	<li><a href="index.html">Home</a></li>
+	            <li><a href="search.html">Search</a></li>
+	            <li><a href="activity.html">Activity</a></li>
+	            <li><a href="tasks.html">Add Job</a></li>
+	            <li><a href="about.html">About</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
+<!-- Job Input -->
+
+<div class="tasks">
+	<form id="taskspage">
+		  <div class="form-group">
+		    <label for="jobTitleInput">Job Title: </label>
+		    <input type="text" class="form-control" id="jobTitle">
+		  </div>
+		  <div class="form-group">
+		    <label for="companyInput">Company:</label>
+		    <input type="text" class="form-control" id="company">
+		  </div>
+		  <div class="form-group">
+		    <label for="locationInput">Location (City, State):</label>
+		    <input type="text" class="form-control" id="location">
+		  </div>
+		  <div class="form-group">
+		    <label for="salaryInput">Hourly Rate/Yearly Salary:</label>
+		    <input type="number" class="form-control" id="salary">
+		  </div>
+		  <div class="form-group">
+		    <label for="contactInput">Contact:</label>
+		    <input type="text" class="form-control" id="contact">
+		  </div>
+		  <button type="submit" class="btn btn-default" id="addJob">Submit</button>
+	</form>
+
+			<div class="panel-body">
+              <table class="table table-hover" id='jobs-table'>
+                <thead>
+                  <tr>
+                    <th>Role:</th>
+                    <th>Company:</th>
+                    <th>Location:</th>
+                    <th>Rate:</th>
+                    <th>Contact:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+	
+
+<!-- to do list -->
+
+<!--	<div id="taskstodo">
+		<form>
+		<input type="text">
+		<input type="submit" value="save">
+		</form>
+		<div id="todo-list"></div>
+	</div> -->
+
+
+
+
+	<br><br>
+
+<!-- Footer -->
+	<div class="footer navbar-fixed-bottom" id="footer">
+  		<div class="panel-footer" style="text-align: center">
+  			<h1 class="footer">2017 Horseshoe Job Search ©</h1>
+			<!-- Insert links to API (Linkedin & Glass Door) -->
+
+  		</div>
+	</div>
+
+	</div>
+</div>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAaYng0z0kyak1SG-CLYeR6uWFswrnEExg",
+    authDomain: "project-1-horseshoe.firebaseapp.com",
+    databaseURL: "https://project-1-horseshoe.firebaseio.com",
+    projectId: "project-1-horseshoe",
+    storageBucket: "project-1-horseshoe.appspot.com",
+    messagingSenderId: "357220637420"
+  };
+  firebase.initializeApp(config);
+
+var database = firebase.database();
+
+$("#addJob").on("click", function(event) {
+  event.preventDefault();
+    //gather user input
+  	var jobName = $("#jobTitle").val().trim();
+  	var companyName = $("#company").val().trim();
+  	var locationName = $("#location").val().trim();
+  	var salaryAmount = $("#salary").val().trim();
+  	var contactName = $("#contact").val().trim();
+	  var jobNumber = Math.floor(Math.random() * 90000) + 10000;
+  	
+    //clear input boxes
+    $("#jobTitleInput").val("");
+    $("#companyInput").val("");
+    $("#locationInput").val("");
+    $("#salaryInput").val("");
+    $("#contactInput").val("");
+
+console.log(jobNumber); //checkpoint
+
+    //push into data mgmt structure
+    database.ref('jobs/' + jobNumber).set ({
+    job: jobName,
+    company: companyName,
+    location: locationName,
+    salary: salaryAmount,
+    contact: contactName,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
+});
+
+//get snapshot
+database.ref('jobs').on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val().job);
+  console.log(childSnapshot.val().company);
+  console.log(childSnapshot.val().location);
+  console.log(childSnapshot.val().salary);
+  console.log(childSnapshot.val().contact); //checkpoint
+
+    //append data values to chart
+    $("#jobs-table > tbody").append("<tr><td>" + childSnapshot.val().job + "</td><td>" + childSnapshot.val().company + "</td><td>" +
+    childSnapshot.val().location + "</td><td>" + childSnapshot.val().salary + "</td><td>" + childSnapshot.val().contact + "</td></tr>");
+   }, function(errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+}); 
+
+</script>
+
+<script src="assets/javascript/nav.js"></script>
+</body>
+</html>
